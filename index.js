@@ -1,4 +1,5 @@
 const fs = require('fs');
+const request = require('request')
 const {
   Client,
   Collection,
@@ -14,6 +15,11 @@ const client = new Client({
 const Discord = require('discord.js');
 client.discord = Discord;
 client.config = config;
+
+setInterval(() => {
+  request("http://176.174.102.101:3001/api/push/PUK6l2MspU?msg=OK&ping=")
+  console.log('ping status page')
+}, 20000);
 
 client.commands = new Collection();
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
