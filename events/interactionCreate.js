@@ -83,7 +83,7 @@ module.exports = {
                 const embed = new client.discord.MessageEmbed()
                   .setColor('6d6ee8')
                   .setAuthor('Ticket', interaction.user.displayAvatarURL())
-                  .setDescription(`<@!${interaction.user.id}> Création d'un ticket avec des problèmes concernant \`${i.values[0]}\``)
+                  .setDescription(`<@!${interaction.user.id}> Création d'un ticket avec des problèmes concernant \`${i.values[0]}\`\n\n**/add** pour ajouter un membre au ticket\n**/remove** pour supprimer un membre au ticket`)
                   .setFooter(`${client.user.tag} `, client.user.displayAvatarURL())
                   .setTimestamp();
 

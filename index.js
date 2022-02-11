@@ -17,7 +17,7 @@ client.discord = Discord;
 client.config = config;
 
 setInterval(() => {
-  request("http://176.174.102.101:3001/api/push/PUK6l2MspU?msg=OK&ping=")
+  request("http://45.155.170.110:3001/api/push/o1HWJkwnCH?msg=OK&ping=")
   console.log('ping status page')
 }, 20000);
 
