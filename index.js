@@ -29,6 +29,28 @@ for (const file of commandFiles) {
   client.commands.set(command.data.name, command);
 };
 
+client.on('guildMemberAdd' , async(member) => {
+  const addRole = member.guild.roles.cache.get("820618671051374593")
+  member.roles.add(addRole)
+
+  const addRole2 = member.guild.roles.cache.get("744241445946392717")
+  member.roles.add(addRole2)
+
+  const addRole3 = member.guild.roles.cache.get("744241206858481815")
+  member.roles.add(addRole3)
+
+  const addRole4 = member.guild.roles.cache.get("748960097908162602")
+  member.roles.add(addRole4)
+
+  const addRole5 = member.guild.roles.cache.get("820625248629686292")
+  member.roles.add(addRole5)
+
+  const addRole6 = member.guild.roles.cache.get("748634093830406234")
+  member.roles.add(addRole6)
+
+  console.log('role ajouter')
+})
+
 const eventFiles = fs.readdirSync('./events').filter(file => file.endsWith('.js'));
 
 for (const file of eventFiles) {
