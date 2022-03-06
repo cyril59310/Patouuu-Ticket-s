@@ -12,12 +12,14 @@ module.exports = {
         });
       };
 
+      let ticketid
       interaction.guild.channels.create(`ticket-${interaction.user.username}`, {
         parent: client.config.parentOpened,
         topic: interaction.user.id,
         permissionOverwrites: [{
             id: interaction.user.id,
-            allow: ['SEND_MESSAGES', 'VIEW_CHANNEL'],
+            allow: ['VIEW_CHANNEL'],
+            deny: ['SEND_MESSAGES'],
           },
           {
             id: client.config.roleSupport,
@@ -30,6 +32,7 @@ module.exports = {
         ],
         type: 'text',
       }).then(async c => {
+        ticketid = c.id
         interaction.reply({
           content: `Ticket créé ! <#${c.id}>`,
           ephemeral: true
@@ -76,6 +79,8 @@ module.exports = {
           time: 300000 //5 minutes
         });
 
+        console.log(ticketid)
+        const chan = client.channels.cache.get(ticketid);
         collector.on('collect', i => {
           if (i.user.id === interaction.user.id) {
             if (msg.deletable) {
@@ -95,7 +100,6 @@ module.exports = {
                     .setEmoji('✖')
                     .setStyle('DANGER'),
                   );
-
                 const opened = await c.send({
                   content: `<@&${client.config.roleSupport}>`,
                   embeds: [embed],
@@ -108,6 +112,8 @@ module.exports = {
               });
             };
           };
+          chan.permissionOverwrites.create(
+            interaction.user.id,{SEND_MESSAGES:true,VIEW_CHANNEL:true})
         });
 
         collector.on('end', collected => {
